@@ -1,4 +1,18 @@
 #!/bin/bash
 
-app=$(cat ~/.config/zenlauncher/applist.csv | sed 's/,/\n/g' | sed 's/^ *\(.*\) *$/\1/g' | zenity --list --title="ZenLauncher" --column="Command" --column="Description" --column="Command" --print-column=3 --width=500 --height=300)
+configfile=$HOME/.config/zenlauncher/applist.csv
+configdir=$(dirname $configfile)
+
+if [ ! -f $configfile ] ;
+then
+    mkdir -p $configdir
+    echo "Add to Zen, Add a new entry to zen launcher, addtozen" >> $configfile
+fi
+
+function addtozen {
+mkdir -p $configdir
+zenity --forms --add-entry="Name" --add-entry="Description" --add-entry="Command" --separator="," >> $configfile
+}
+
+app=$(cat $configfile | sed 's/,/\n/g' | sed 's/^ *\(.*\) *$/\1/g' | zenity --list --title="ZenLauncher" --column="Command" --column="Description" --column="Command" --print-column=3 --width=500 --height=300)
 eval $app
