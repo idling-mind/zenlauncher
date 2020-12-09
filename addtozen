@@ -1,0 +1,3 @@
+#!/bin/bash
+
+zenity --forms --add-entry="Name" --add-entry="Description" --add-entry="Command" --separator="," >> ~/.config/zenlauncher/applist.csv
