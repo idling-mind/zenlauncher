@@ -14,5 +14,5 @@ mkdir -p $configdir
 zenity --forms --add-entry="Name" --add-entry="Description" --add-entry="Command" --separator="," >> $configfile
 }
 
-app=$(cat $configfile | sed 's/,/\n/g' | sed 's/^ *\(.*\) *$/\1/g' | zenity --list --title="ZenLauncher" --column="Command" --column="Description" --column="Command" --print-column=3 --width=500 --height=300)
+app=$(cat $configfile | sed 's/,/\n/g' | sed 's/^ *\(.*\) *$/\1/g' | zenity --list --title="ZenLauncher" --column="Name" --column="Description" --column="Command" --print-column=3 --width=800 --height=300)
 eval $app
