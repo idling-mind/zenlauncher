@@ -1,14 +1,17 @@
 #!/bin/bash
 
+# Config file stores all the commands as csv data
 configfile=$HOME/.config/zenlauncher/applist.csv
 configdir=$(dirname $configfile)
 
+# Create the config file if it's not existing and add the first command
 if [ ! -f $configfile ] ;
 then
     mkdir -p $configdir
     echo "Add to Zen, Add a new entry to zen launcher, addtozen" >> $configfile
 fi
 
+# addtozen to append a line to config file
 function addtozen {
 mkdir -p $configdir
 zenity --forms --add-entry="Name" --add-entry="Description" --add-entry="Command" --separator="," >> $configfile
